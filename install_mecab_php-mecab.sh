@@ -25,15 +25,15 @@ sudo apt-get install -y mecab mecab-ipadic-utf8 mecab-utils libmecab-dev unzip b
 if [ $HASMECAB ] ; then
     echo "${BLUE}php-mecab is already installed.${NC}"
 
-elif [ -d /etc/php/$SHORTVERSION/mods-available ] ; then
+elif [ -d /usr/share/mecab ] ; then
     echo "${GREEN}Installing php-mecab...${NC}"
     wget https://github.com/nihongodera/php-mecab/archive/master.zip
     unzip master.zip
-    cd php-mecab-master/mecab && phpize && ./configure --with-php-config=/usr/bin/php-config --with-mecab-config=/usr/bin/mecab-config && make && sudo make install
-    cd /etc/php/$SHORTVERSION/mods-available
-    sudo touch mecab.ini
-    echo "extension=mecab.so" | sudo tee -a mecab.ini
-    sudo phpenmod -v $SHORTVERSION mecab
+    cd php-mecab-master/mecab && phpize && ./configure --with-php-config=/usr/local/bin/php-config --with-mecab-config=/usr/bin/mecab-config && make && sudo make install
+    #cd /etc/php/$SHORTVERSION/mods-available
+    #sudo touch mecab.ini
+    #echo "extension=mecab.so" | sudo tee -a mecab.ini
+    #sudo phpenmod -v $SHORTVERSION mecab
 
     echo "${BLUE}Cleaning up...${NC}"
 
