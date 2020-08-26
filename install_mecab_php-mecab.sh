@@ -17,6 +17,7 @@ LONGVERSION=$(echo $OUTPUT | cut -d ' ' -f2 | cut -d '-' -f1)
 SHORTVERSION=${LONGVERSION%.*}
 
 echo $SHORTVERSION
+echo $HASMECAB
 
 echo "${GREEN}Installing dependencies...${NC}"
 sudo apt-get install -y mecab mecab-ipadic-utf8 mecab-utils libmecab-dev unzip build-essential 
